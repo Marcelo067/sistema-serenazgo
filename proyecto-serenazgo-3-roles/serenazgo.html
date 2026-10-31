@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serenazgo - Panel del sereno</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-role="serenazgo">
+<header class="site-header sereno-header">
+  <div class="brand">
+    <div class="brand-icon">🛡️</div>
+    <div>
+      <h1>Panel operativo del Serenazgo</h1>
+      <p id="serenoNombre">Sereno asignado</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <span class="role-badge sereno">Serenazgo</span>
+    <button id="btnCerrarSesion" class="btn btn-outline">Cerrar sesión</button>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <button class="nav-btn active" data-target="casos">Mis casos</button>
+  <button class="nav-btn" data-target="historialSereno">Historial atendido</button>
+  <button class="nav-btn" data-target="perfilSereno">Mi perfil</button>
+</nav>
+
+<main class="page-shell">
+  <section id="casos" class="view active-view">
+    <section class="content-section">
+      <div class="section-heading">
+        <div><small class="step-label">OPERACIÓN</small><h2>Casos asignados</h2><p>Solo puedes ver los casos que fueron asignados a tu usuario.</p></div>
+        <button id="btnRefrescarSereno" class="btn btn-soft">↻ Actualizar</button>
+      </div>
+      <div id="casosAsignados" class="cards-list"></div>
+    </section>
+  </section>
+
+  <section id="historialSereno" class="view">
+    <section class="content-section">
+      <h2>Historial de casos atendidos</h2>
+      <div id="historialAtendidos" class="cards-list"></div>
+    </section>
+  </section>
+
+  <section id="perfilSereno" class="view">
+    <section class="content-section">
+      <h2>Mi perfil</h2>
+      <div class="profile-grid">
+        <div class="panel">
+          <h3>Información del sereno</h3>
+          <p><strong>Nombre:</strong> Juan Pérez Ramos</p>
+          <p><strong>Código:</strong> SERENO-014</p>
+          <p><strong>Unidad:</strong> CH-12</p>
+          <p><strong>Turno:</strong> 08:00 - 16:00</p>
+          <p><strong>Zona:</strong> Chorrillos Centro</p>
+        </div>
+        <div class="panel">
+          <h3>Resumen personal</h3>
+          <p><strong>Casos atendidos:</strong> <span id="perfilAtendidos">0</span></p>
+          <p><strong>Casos activos:</strong> <span id="perfilActivos">0</span></p>
+          <p><strong>Estado:</strong> Disponible</p>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer>Panel operativo · Datos simulados</footer>
+<div id="toast" class="toast"></div>
+<script src="js/serenazgo.js"></script>
+</body>
+</html>

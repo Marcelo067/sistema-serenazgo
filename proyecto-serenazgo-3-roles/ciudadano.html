@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serenazgo - Portal ciudadano</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-role="ciudadano">
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-icon">✚</div>
+    <div>
+      <h1>Portal ciudadano de Serenazgo</h1>
+      <p>Sistema Inclusivo de Atención de Serenazgo</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <span class="role-badge">Ciudadano</span>
+    <button id="btnCerrarSesion" class="btn btn-outline">Cerrar sesión</button>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <button class="nav-btn active" data-target="solicitud">Solicitar atención</button>
+  <button class="nav-btn" data-target="seguimiento">Seguimiento</button>
+  <button class="nav-btn" data-target="historial">Mis solicitudes</button>
+  <button class="nav-btn" data-target="ayuda">Ayuda</button>
+</nav>
+
+<main class="page-shell">
+  <section id="solicitud" class="view active-view">
+    <ol class="steps">
+      <li class="active"><span>1</span> Tipo de incidente</li>
+      <li><span>2</span> Ubicación y detalles</li>
+      <li><span>3</span> Confirmación</li>
+    </ol>
+
+    <section class="info-banner">
+      <div>
+        <small>ATENCIÓN ACCESIBLE</small>
+        <h2>¿Necesitas ayuda de Serenazgo?</h2>
+        <p>Selecciona el tipo de incidente para iniciar una solicitud.</p>
+      </div>
+      <div class="shield-card">
+        <div class="shield">🛡️</div>
+        <strong>Serenazgo cerca de ti</strong>
+        <span>Ayuda clara, rápida y accesible</span>
+      </div>
+    </section>
+
+    <section class="content-section" id="pasoIncidente">
+      <div class="section-heading">
+        <div>
+          <h2>Selecciona el tipo de incidente</h2>
+          <p>Solo puedes elegir una opción.</p>
+        </div>
+        <button class="btn btn-outline" id="btnEscucharOpciones">🔊 Escuchar opciones</button>
+      </div>
+
+      <div class="incident-grid incident-grid-5" role="radiogroup">
+        <button class="incident-card" data-value="Violencia" role="radio" aria-checked="false">
+          <span class="icon">🛡️</span><span class="check">✓</span>
+          <strong>Violencia</strong><small>Agresión, amenazas o violencia familiar.</small>
+        </button>
+        <button class="incident-card" data-value="Robo" role="radio" aria-checked="false">
+          <span class="icon">🔎</span><span class="check">✓</span>
+          <strong>Robo</strong><small>Robo, asalto o actividad sospechosa.</small>
+        </button>
+        <button class="incident-card" data-value="Accidente" role="radio" aria-checked="false">
+          <span class="icon">🚗</span><span class="check">✓</span>
+          <strong>Accidente</strong><small>Accidente de tránsito u otra emergencia vial.</small>
+        </button>
+        <button class="incident-card" data-value="Auxilio" role="radio" aria-checked="false">
+          <span class="icon">✚</span><span class="check">✓</span>
+          <strong>Auxilio</strong><small>Necesito ayuda por otra situación.</small>
+        </button>
+        <button class="incident-card" data-value="Otros" role="radio" aria-checked="false">
+          <span class="icon">⋯</span><span class="check">✓</span>
+          <strong>Otros</strong><small>Describe un caso diferente.</small>
+        </button>
+      </div>
+
+      <div id="otroProblemaBox" class="other-box hidden">
+        <label for="otroProblema">Describe el problema</label>
+        <textarea id="otroProblema" rows="3" maxlength="250" placeholder="Explica brevemente qué está ocurriendo..."></textarea>
+        <small><span id="otroCounter">0</span>/250 caracteres</small>
+      </div>
+
+      <div class="notice">Violencia y Auxilio tienen prioridad según las reglas del proyecto.</div>
+      <div class="action-row"><span></span><button id="btnContinuar" class="btn btn-primary" disabled>Continuar →</button></div>
+    </section>
+
+    <section class="content-section hidden" id="pasoUbicacion">
+      <small class="step-label">PASO 2 DE 3</small>
+      <h2>¿Dónde ocurre el incidente?</h2>
+      <div class="two-col">
+        <section class="panel">
+          <h3>Ubicación del incidente</h3>
+          <div class="search-row">
+            <input id="direccion" type="text" placeholder="Calle, avenida, distrito o referencia">
+            <button class="btn btn-soft" id="btnBuscarDireccion">Buscar dirección</button>
+          </div>
+          <div class="map-demo"><div class="map-grid"></div><span class="map-label">CHORRILLOS</span><span class="map-pin"></span></div>
+          <button id="btnUbicacion" class="btn btn-location">◎ Usar mi ubicación actual</button>
+          <div id="locationFeedback" class="feedback success hidden">✓ Ubicación detectada correctamente</div>
+          <p><strong>Ubicación seleccionada:</strong> <span id="ubicacionTexto">pendiente</span></p>
+        </section>
+        <section class="panel">
+          <h3>Evidencia adicional</h3>
+          <p>La evidencia es opcional.</p>
+          <label for="referencia">Referencia del lugar</label>
+          <textarea id="referencia" rows="3" placeholder="Ej. frente al parque..."></textarea>
+          <label>Fotografía</label>
+          <button id="btnFoto" class="btn btn-soft full">🖼 Seleccionar fotografía</button>
+          <input id="fotoInput" type="file" accept="image/*" hidden>
+          <label>Audio</label>
+          <button id="btnAudio" class="btn btn-soft full">🎵 Seleccionar audio</button>
+          <input id="audioInput" type="file" accept="audio/*" hidden>
+          <div class="summary-box">
+            <strong>Resumen</strong>
+            <p>Incidente: <span id="resumenIncidente">—</span></p>
+            <p>Ubicación: <span id="resumenUbicacion">pendiente</span></p>
+          </div>
+        </section>
+      </div>
+      <div class="action-row"><button id="btnVolverIncidente" class="btn btn-outline">Volver</button><button id="btnConfirmarUbicacion" class="btn btn-primary" disabled>Confirmar ubicación →</button></div>
+    </section>
+
+    <section class="content-section hidden" id="pasoConfirmacion">
+      <small class="step-label">PASO 3 DE 3</small>
+      <h2>Tu solicitud está registrada</h2>
+      <div class="success-banner">
+        <div class="success-icon">✓</div>
+        <div class="grow"><h3>¡Tu solicitud ha sido registrada!</h3><p>Hemos recibido tu reporte.</p><strong>Estado actual: Recibido</strong></div>
+        <div class="ticket-info"><small>Número de solicitud</small><strong id="codigoSolicitud">—</strong><small id="fechaSolicitud">—</small></div>
+      </div>
+      <section class="panel">
+        <h3>Estado de la atención</h3>
+        <div class="status-line">
+          <div class="status-step active"><span class="circle">✓</span><strong>Recibido</strong><small>Solicitud registrada</small></div>
+          <div class="status-step"><span class="circle">2</span><strong>Asignado</strong><small>Sereno asignado</small></div>
+          <div class="status-step"><span class="circle">3</span><strong>En camino</strong><small>Unidad en camino</small></div>
+          <div class="status-step"><span class="circle">4</span><strong>Atendido</strong><small>Servicio finalizado</small></div>
+        </div>
+      </section>
+      <div class="action-row"><button id="btnNuevaSolicitud" class="btn btn-outline">Nueva solicitud</button><button class="btn btn-primary" data-go="seguimiento">Ir a seguimiento</button></div>
+    </section>
+  </section>
+
+  <section id="seguimiento" class="view">
+    <section class="content-section">
+      <h2>Consultar seguimiento</h2>
+      <p>Ingresa el código de una solicitud registrada.</p>
+      <div class="search-row"><input id="codigoBusqueda" type="text" placeholder="Ej. SER-123456"><button id="btnBuscarSolicitud" class="btn btn-soft">Consultar</button></div>
+      <div id="busquedaFeedback" class="feedback hidden"></div>
+      <div id="resultadoSeguimiento" class="panel hidden"></div>
+    </section>
+  </section>
+
+  <section id="historial" class="view">
+    <section class="content-section">
+      <h2>Mis solicitudes</h2>
+      <p>Historial de solicitudes registradas desde este navegador.</p>
+      <div id="historialCiudadano" class="cards-list"></div>
+    </section>
+  </section>
+
+  <section id="ayuda" class="view">
+    <section class="content-section">
+      <h2>Ayuda</h2>
+      <div class="panel">
+        <h3>¿Cómo usar el sistema?</h3>
+        <p>1. Selecciona un tipo de incidente.</p>
+        <p>2. Confirma la ubicación.</p>
+        <p>3. Registra la solicitud y guarda el código.</p>
+        <p>4. Consulta el seguimiento cuando lo necesites.</p>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer>Prototipo académico · Datos simulados · Interacción Humano-Computador</footer>
+<div id="toast" class="toast"></div>
+<script src="js/ciudadano.js"></script>
+</body>
+</html>

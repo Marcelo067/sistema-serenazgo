@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serenazgo - Administración</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-role="admin">
+<header class="site-header admin-header">
+  <div class="brand">
+    <div class="brand-icon">⚙</div>
+    <div>
+      <h1>Administración del Sistema de Serenazgo</h1>
+      <p>Gestión de usuarios, serenos y solicitudes</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <span class="role-badge admin">Administrador</span>
+    <button id="btnCerrarSesion" class="btn btn-outline">Cerrar sesión</button>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <button class="nav-btn active" data-target="dashboard">Dashboard</button>
+  <button class="nav-btn" data-target="solicitudesAdmin">Solicitudes</button>
+  <button class="nav-btn" data-target="serenosAdmin">Serenos</button>
+  <button class="nav-btn" data-target="usuariosAdmin">Usuarios</button>
+  <button class="nav-btn" data-target="configuracion">Configuración</button>
+</nav>
+
+<main class="page-shell admin-shell">
+  <section id="dashboard" class="view active-view">
+    <section class="content-section">
+      <div class="section-heading">
+        <div><small class="step-label">ADMINISTRACIÓN</small><h2>Resumen general</h2><p>Indicadores simulados para demostración.</p></div>
+        <button id="btnRefrescar" class="btn btn-soft">↻ Actualizar</button>
+      </div>
+      <div class="metric-grid">
+        <article class="metric-card"><span>Solicitudes</span><strong id="mTotal">0</strong></article>
+        <article class="metric-card"><span>Pendientes</span><strong id="mPendientes">0</strong></article>
+        <article class="metric-card"><span>En camino</span><strong id="mCamino">0</strong></article>
+        <article class="metric-card"><span>Atendidas</span><strong id="mAtendidas">0</strong></article>
+        <article class="metric-card"><span>Serenos habilitados</span><strong id="mSerenos">0</strong></article>
+      </div>
+      <section class="panel"><h3>Última solicitud registrada</h3><div id="ultimaSolicitud">No hay solicitudes registradas.</div></section>
+    </section>
+  </section>
+
+  <section id="solicitudesAdmin" class="view">
+    <section class="content-section">
+      <h2>Gestión de solicitudes</h2>
+      <p>Revisa solicitudes, asigna serenos y supervisa los estados.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Código</th><th>Incidente</th><th>Estado</th><th>Sereno</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaSolicitudes"></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <section id="serenosAdmin" class="view">
+    <section class="content-section">
+      <div class="section-heading"><div><h2>Administración de serenos</h2><p>Define qué personal está habilitado para operar en el sistema.</p></div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Código</th><th>Nombre</th><th>Unidad</th><th>Zona</th><th>Estado</th><th>Acción</th></tr></thead>
+          <tbody id="tablaSerenos"></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <section id="usuariosAdmin" class="view">
+    <section class="content-section">
+      <h2>Usuarios registrados</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>Ciudadano Demo</td><td>ciudadano@demo.com</td><td>Ciudadano</td><td><span class="status-pill ok">Activo</span></td></tr>
+            <tr><td>Juan Pérez Ramos</td><td>sereno@demo.com</td><td>Serenazgo</td><td><span class="status-pill ok">Activo</span></td></tr>
+            <tr><td>Administrador Demo</td><td>admin@demo.com</td><td>Administrador</td><td><span class="status-pill ok">Activo</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <section id="configuracion" class="view">
+    <section class="content-section">
+      <h2>Configuración</h2>
+      <div class="panel">
+        <h3>Información técnica</h3>
+        <p>Modalidad: frontend con datos simulados.</p>
+        <p>Persistencia: localStorage del navegador.</p>
+        <p>Autenticación: simulada en JavaScript.</p>
+        <p>No existe integración real con servicios municipales.</p>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer>Administración · Prototipo académico · Datos simulados</footer>
+<div id="toast" class="toast"></div>
+<script src="js/admin.js"></script>
+</body>
+</html>
